@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
 
 namespace _2019Feb
@@ -11,22 +12,30 @@ namespace _2019Feb
         {
             this.driver = driver;
         }
+     
+        IWebElement txtUserName => driver.FindElement(By.Id("UserName"));
+        IWebElement txtPassword => driver.FindElement(By.Name("Password"));
+        IWebElement btnLogin => driver.FindElement(By.XPath("//input[@class='btn btn-default']"));
 
         internal void LoginSucess()
         {
             //*** Login Page
             //Identyfying and sending the username 
-            IWebElement txtUserName = driver.FindElement(By.Id("UserName"));
             txtUserName.SendKeys("hari");
 
             //Identfying password element
-            IWebElement txtPassword = driver.FindElement(By.Name("Password"));
             //enter password
             txtPassword.SendKeys("123123");
 
             //Click log in 
-            var btnLogin = driver.FindElement(By.XPath("//input[@class='btn btn-default']"));
             btnLogin.Click();
         }
+
+        //Demonstrate the reusability of elments.
+        internal void Someothermethod()
+        {
+            txtUserName.SendKeys("");
+        }
+       
     }
 }

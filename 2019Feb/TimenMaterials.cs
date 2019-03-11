@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using OpenQA.Selenium;
 
 namespace _2019Feb
@@ -34,6 +35,35 @@ namespace _2019Feb
 
             //  click save
             driver.FindElement(By.Id("SaveButton")).Click();
+        }
+
+        
+
+        internal void ValidateRecord()
+        {
+            Thread.Sleep(2000);
+            try
+            {
+                while (true)
+                {
+                    for (int i = 1; i <= 10; i++)
+                    {
+                        var code = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[" + i + "]/td[1]")).Text;
+                        Console.WriteLine(code);
+
+                        if ("102938" == code)
+                        {
+                            Console.WriteLine("Test passed");
+                            return;
+                        }
+                    }
+                    driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[3]/span")).Click();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Test Failed");
+            }
         }
     }
 }

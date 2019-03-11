@@ -16,6 +16,7 @@ namespace _2019Feb
             var loginPage = new LoginPage(driver);
             loginPage.LoginSucess();
 
+
             var home = new HomePage(driver);
             home.ClickAdministration();
             home.ClickTimenMaterials();
@@ -23,8 +24,9 @@ namespace _2019Feb
             var time = new TimenMaterials(driver);
             time.clickCreateNew();
             time.EnterValidDetails();
+            time.ValidateRecord();
 
-            driver.Quit();
+            //driver.Quit();
 
             
         }
