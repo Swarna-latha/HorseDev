@@ -12,6 +12,7 @@ namespace _2019Feb
     class AdminstrationTests
     {
         IWebDriver driver;
+
         [SetUp]
         public void setup()
         {
@@ -36,7 +37,7 @@ namespace _2019Feb
             home.ClickAdministration();
             home.ClickTimenMaterials();
 
-            var time = new TimenMaterials(driver);
+            var time = new TimenMaterialsPage(driver);
             time.clickCreateNew();
             time.EnterValidDetails();
             time.ValidateRecord();           

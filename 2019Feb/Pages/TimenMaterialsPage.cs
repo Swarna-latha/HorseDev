@@ -1,24 +1,26 @@
 ﻿using System;
-using System.Threading;
+using _2019Feb.Framework;
 using OpenQA.Selenium;
 
 namespace _2019Feb
 {
-    internal class TimenMaterials
+    internal class TimenMaterialsPage
     {
         private IWebDriver driver;
 
-        public TimenMaterials(IWebDriver driver)
+        public TimenMaterialsPage(IWebDriver driver)
         {
             this.driver = driver;
         }
+        IWebElement btnCreate =>driver.FindElement(By.XPath("//a[@class='btn btn-primary']"));
+
 
         internal void clickCreateNew()
         {
 
             //***Time n material pages 
             //Click on Create New 
-            driver.FindElement(By.XPath("//a[@class='btn btn-primary']")).Click();
+           btnCreate.Click();
 
         }
 
@@ -34,6 +36,7 @@ namespace _2019Feb
             driver.FindElement(By.XPath("//input[@class='k-formatted-value k-input']")).SendKeys("9.99");
 
             //  click save
+            //driver.WaitForElement(By.Id("SaveButton"), TimeSpan.FromDays(1));
             driver.FindElement(By.Id("SaveButton")).Click();
         }
 
@@ -41,7 +44,11 @@ namespace _2019Feb
 
         internal void ValidateRecord()
         {
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
+            driver.WaitForElement((By.XPath("//a[@class='btn btn-primary']")), TimeSpan.FromSeconds(10));
+
+            Console.WriteLine(btnCreate.Text);
+
             try
             {
                 while (true)
@@ -63,6 +70,7 @@ namespace _2019Feb
             catch (Exception)
             {
                 Console.WriteLine("Test Failed");
+
             }
         }
     }
