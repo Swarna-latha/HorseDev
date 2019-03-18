@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using _2019Feb.Framework.Libs;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 
@@ -21,7 +22,9 @@ namespace _2019Feb
         {
             //*** Login Page
             //Identyfying and sending the username 
-            txtUserName.SendKeys("hari");
+            //txtUserName.SendKeys("hari");
+            txtUserName.SendKeys(ExcelLib.ReadData(2, "UserName"));
+
 
             //Identfying password element
             //enter password

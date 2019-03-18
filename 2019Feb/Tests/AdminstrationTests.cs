@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using _2019Feb.Framework.Libs;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -18,7 +19,12 @@ namespace _2019Feb
         {
             // Creating a new Chrome Driver
             driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
+
+            ExcelLib.PopulateInCollection(@"C:\Users\aadhith.bose\source\repos\HorseDev\2019Feb\Data\data.xlsx", "TestData");
+            var url = ExcelLib.ReadData(2, "url");
+            driver.Navigate().GoToUrl(url);
+
+            //driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
 
             var loginPage = new LoginPage(driver);
             loginPage.LoginSucess();
