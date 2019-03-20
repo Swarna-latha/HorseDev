@@ -36,9 +36,18 @@ namespace _2019Feb
             driver.Quit();
         }
 
+
         [Test]
         public void CreateandValidateTimenMaterialTests()
-        {        
+        {
+            ExcelLib.PopulateInCollection(@"C:\Users\aadhith.bose\source\repos\HorseDev\2019Feb\Data\data.xlsx", "TestData");
+            var url = ExcelLib.ReadData(2, "url");
+            driver.Navigate().GoToUrl(url);
+
+            //driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
+
+            var loginPage = new LoginPage(driver);
+            loginPage.LoginSucess();
             var home = new HomePage(driver);
             home.ClickAdministration();
             home.ClickTimenMaterials();
@@ -52,6 +61,14 @@ namespace _2019Feb
         [Test]
         public void EditnValidate()
         {
+            ExcelLib.PopulateInCollection(@"C:\Users\aadhith.bose\source\repos\HorseDev\2019Feb\Data\data.xlsx", "tc2");
+            var url = ExcelLib.ReadData(2, "url");
+            driver.Navigate().GoToUrl(url);
+
+            //driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
+
+            var loginPage = new LoginPage(driver);
+            loginPage.LoginSucess();
             //IWebDriver driver = new ChromeDriver();
             //driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
 
@@ -70,6 +87,14 @@ namespace _2019Feb
         [Test]
         public void DeletenValidate()
         {
+            ExcelLib.PopulateInCollection(@"C:\Users\aadhith.bose\source\repos\HorseDev\2019Feb\Data\data.xlsx", "tc3");
+            var url = ExcelLib.ReadData(2, "url");
+            driver.Navigate().GoToUrl(url);
+
+            //driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
+
+            var loginPage = new LoginPage(driver);
+            loginPage.LoginSucess();
 
             //IWebDriver driver = new ChromeDriver();
             //driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
